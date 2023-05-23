@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="{% static 'css/login_css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+</head>
+
+<link rel="icon" type="image/ico" href="ab.ico">
+<body>
+    <center>
+        <div>
+            <form action="../staff-dashboard">
+                <a href="../index">
+                    <img src="{% static '/images/ab.png' %}"></a>
+                    <h1>Doctor Login</h1>
+
+                <br>
+                <center>
+                    
+                    <label id="email_l"><b>Username:</b></label>
+                    <br>
+                    <input type="text" placeholder="Enter Username" id="email" required>
+                </center>
+                <center>
+                    <label id="psw_l"><b>Password:</b></label>
+                    <br>
+                    <input type="password" placeholder="Enter Password" id="psw" required>
+                </center>
+                <center>
+                    <button id="button" type="submit">Login</button>
+                </center>
+                
+                <br>
+                <br>
+               <a id="bck" href="../index"><u>Back to home page</u></a></span>
+            </form>
+        </div>
+    </center>
+</body>
+
+</html>

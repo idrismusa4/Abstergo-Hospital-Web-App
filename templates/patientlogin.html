@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Patient Login</title>
+    <link rel="stylesheet" href="{% static '/css/login_css.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/fontawesome.min.css' %}">
+</head>
+
+<link rel="icon" type="image/ico" href="{% static '/images/ab.ico' %}">
+<body>
+    <center>
+        <div>
+            <form action=" " method="POST">
+                {% csrf_token %}
+                <a href="../index">
+                    <img src="{% static '/images/ab.png' %}" width="100px" height="100px"></a>
+                    <h1>Patient Login</h1>
+                        {% if messages %}
+                          {% for message in messages %}
+                           <p><span style="color: red;">{{ message }}</span><br></p>
+                            
+                          {% endfor %}
+                          
+                        {% endif %}
+
+                <br>
+                <center>
+                    <label id="email_l"><b>Username:</b></label>
+                    <br>
+                    <input type="text" placeholder="Enter Username" id="email" name="username" required>
+                </center>
+                <center>
+                    <label id="psw_l"><b>Password:</b></label>
+                    <br>
+                    <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+                </center>
+                <center>
+                    <button id="button" type="submit">Login</button>
+                </center>
+                
+                <br>
+                <br>
+               
+                <span>Don't Have an Account?<a href="../patient-registration">Sign Up</a></span><br>
+                <br>
+                <span><a id="bck" href="../index"><u>Back to home page</u></a></span>
+        </form>
+        </div>
+    </center>
+</body>
+
+</html>

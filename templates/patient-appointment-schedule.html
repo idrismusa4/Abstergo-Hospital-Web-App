@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function saved(){
+                alert("Schedule Saved succesfully")
+            }
+        </script>
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+        <link rel="stylesheet" href="{% static 'login_css.css' %}">
+        <style>
+            
+            table,td,th{border: 1px solid black;}
+            .center
+            {
+             text-align: center;
+             list-style-position: inside;
+            }
+            ol.center li
+            {
+             text-align: left;
+             margin-left: 43%;
+            }
+            .middle{
+                text-align: center;
+                list-style-position: inside;
+            }
+
+            ul.middle li{
+                text-align: left;
+                margin-left: 43%;
+            }
+
+        
+        </style>
+    <title>
+        Appointment Schedule||Abstergo
+    </title>
+    <link rel="icon" type="image/ico" href="{% static 'images/ab.ico'%}"> 
+</head>
+    <body style="background-image: url(../static/images/12.png);">
+         <div class="top">
+            <a href="../patient-index">
+                <img src="{% static 'images/ab.png'%}" width="auto" height="60px" class="align" style="display: block; margin-left: auto;margin-right: auto;">
+            </a>
+        </div>
+        <div class="topnav">
+            <a href="../patient-index"><i class="fas fa-home"></i> Home</a>
+           <!--- <div class="float">-->
+              <div class="dropdown" style="float: right;">
+                <button class="dropbtn"> Profile
+                    <i class="fas fa-user-circle"></i>
+                     <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                <a href="../patient-dashboard"> <i class="fas fa-address-book"></i> Dashboard</a>
+                  <a href="../edit-patient-profile"><i class="fas fa-user-circle"></i> Edit Profile</a>
+                  <a href="../index"><i class="fas fa-sign-in-alt"></i> Log Out</a>
+                  </div>
+                </div>
+                <a href="../patient-appointment-schedule"><i class="far fa-calendar-alt"></i> My Appointments</a>
+                <a href="../patientcontactus"><i class="fas fa-mobile-alt"></i> Contact Us</a>
+
+       </div> 
+            <center>
+            <div style="background-color: white; width: 97%; display: flex; flex-direction: column;">
+                <h1 style="text-align: left;">My Appointments</h1>
+                <p style="text-align: left;"><em>View Past Appointments</em></p>
+                <button type="button" class="modal-button" onclick="openModal()" style="background-color:slategrey;
+                color: white;
+                padding: 16px 20px;
+                margin: 8px 12px;
+                border: none;
+                cursor: pointer;
+                align-items: left;
+                width: 20%;">+ New Appointment</button><br>
+
+ <!-- Modal -->
+ <div id="myModal" class="modal">
+     <!-- Modal content -->
+     <div class="modal-content">
+         <span class="close-button" onclick="closeModal()">&times;</span>
+         <form action="../create_appointment/" method="post">
+            {% csrf_token %}
+             <h1>Book an Appointment</h1>
+             <h4>Please fill in the suitable details for your appointment</h4>
+             <label><b>Patient:</b></label>
+             <select name="patient">
+                <option value="null"></option>
+                {% for patient in patients %}
+                   <option value="{{patient.id}}">{{patient.name}}</option>
+                {% endfor %}
+            </select><br>
+             <label><b>Time and Date:</b></label>
+             <input type="datetime-local" name="time"><br>
+             <label><b>Doctor's Name:</b></label>
+             <select name="doctor">
+                 <option value="null"></option>
+                 {% for doctor in doctors %}
+                    <option value="{{doctor.id}}">{{doctor.name}}</option>
+                 {% endfor %}
+             </select><br>
+             <label><b>Reason for Appointment:</b></label>
+             <input type="text"name="appointmentreason"><br>
+             <input class="registerbtn" type="submit" value="Save Changes" style="width: 100%;" onclick="alert('Appointment Saved Successfully')">
+         </form>
+     </div>
+ </div>
+                <h2 style="text-align: left;">My Appointments</h2>
+
+                <h2 style="text-align: left;">Completed Sessions</h2>
+
+
+            </div>
+
+    </body>
+
+    <script>
+         // Open the modal
+         function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        // Close the modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+</html>
